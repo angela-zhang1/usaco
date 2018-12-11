@@ -1,0 +1,21 @@
+/*
+ID: angela.11	
+TASK: milk2
+LANG: C++
+*/
+
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+ifstream milkIn("milk.in");
+int cowNum;
+
+int main() {
+	milkIn >> cowNum;
+
+
+	return 0;
+}
