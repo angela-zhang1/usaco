@@ -4,6 +4,8 @@ TASK: milk2
 LANG: C++
 */
 
+//THIS CODE ISN'T FINISHED
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -15,7 +17,14 @@ int cowNum;
 
 int main() {
 	milkIn >> cowNum;
+	milkIn.close();
 
-
+	for (int i = 0; i < cowNum; i++) {
+	
+	}
+	 
+	ofstream milkOut("milk.out");
+	milkOut << cowNum; //change this at some point
+	milkOut.close();
 	return 0;
 }
