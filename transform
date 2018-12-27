@@ -1,0 +1,23 @@
+/*
+ID: angela.11
+TASK: transform
+LANG: C++
+*/
+
+#include <iostream>
+#include <fstream>
+#include <string>
+
+int patternChange;
+int size;
+
+std::ifstream transformIn("transform.in");
+
+int main() {
+	//dang.... this is going to be difficult
+	transformIn >> size;
+
+	std::ofstream transformOut("transform.out");
+	transformOut << patternChange;
+	transformOut.close();
+}
