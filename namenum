@@ -1,0 +1,35 @@
+/*
+ID: angela.11
+TASK: namenum 
+LANG: C++
+*/
+
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+
+std::ifstream nameIn(“namenum.in”);
+std::ifstream dictIn(“dict.txt”);
+
+int main() {
+vector<string> possibleNames;
+string cowNum;
+
+nameIn >> cowNum;
+for (int i = 0; i < cowNum.length; i++){
+
+}
+
+
+
+std::ofstream nameOut(“namenum.out”);
+for (int i = 0; i < possibleNames.length; i++){
+nameOut << possibleNames[i];
+}
+if (possibleNames.length=0){
+nameOut << “NONE”;
+}
+nameOut << “\n”;
+return 0;
+}
