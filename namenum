@@ -1,6 +1,6 @@
 /*
 ID: angela.11
-TASK: namenum 
+TASK: namenum
 LANG: C++
 */
 
@@ -8,28 +8,68 @@ LANG: C++
 #include <fstream>
 #include <string>
 #include <vector>
+#include <map>
+#include <array> 
+//so many headers!
 
-std::ifstream nameIn(“namenum.in”);
-std::ifstream dictIn(“dict.txt”);
+std::ifstream nameIn("namenum.in");
+std::ifstream dictionary("dict.txt");
 
 int main() {
-vector<string> possibleNames;
-string cowNum;
+	std::vector<std::string> possibleNames;
+	std::vector<std::string> cowNames;
+	std::string cowNum;
+	
+	std::map<char, std::array<char, 3>> letterReference{
+		{'2', {'A','B','C'}},
+		{'3', {'D','E','F'}},
+		{'4', {'G','H','I'}},
+		{'5', {'J','K','L'}},
+		{'6', {'M','N','O'}},
+		{'7', {'P','R','S'}},
+		{'8', {'T','U','V'}},
+		{'9', {'W','X','Y'}},
+	};
 
-nameIn >> cowNum;
-for (int i = 0; i < cowNum.length; i++){
+	nameIn >> cowNum;
+	nameIn.close();
 
-}
+	std::string name;
+	bool trueName;
+	
+	while (!dictionary.eof()) {
+		dictionary >> name;
+		if (name.length() == cowNum.length())
+			possibleNames.push_back(name);
+	}
+	
+	dictionary.close();
 
+	for (unsigned int i = 0; i < possibleNames.size(); i++) {
+		name = possibleNames[i];
+		for (unsigned int j = 0; j < cowNum.length(); j++) {
+			char nameLetter = name[j];
+			char cowNumDigit = cowNum[j];
+			if ((nameLetter != letterReference[cowNumDigit][0]) && (nameLetter != letterReference[cowNumDigit][1]) && (nameLetter != letterReference[cowNumDigit][2])) {
+				trueName = false;
+				break;
+			}
+		}
+		if(trueName)
+			cowNames.push_back(name);
+	}
 
+	std::ofstream nameOut("namenum.out");
 
-std::ofstream nameOut(“namenum.out”);
-for (int i = 0; i < possibleNames.length; i++){
-nameOut << possibleNames[i];
-}
-if (possibleNames.length=0){
-nameOut << “NONE”;
-}
-nameOut << “\n”;
-return 0;
+	for (unsigned int i = 0; i < cowNames.size(); i++) {
+		nameOut << cowNames[i];
+	}
+
+	if (cowNames.size() == 0) {
+		nameOut << "NONE";
+	}
+
+	nameOut << "\n";
+	nameOut.close();
+	return 0;
 }
