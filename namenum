@@ -34,9 +34,10 @@ int main() {
 	nameIn >> cowNum;
 	nameIn.close();
 
+	bool trueName = true;
 	std::string name;
-	bool trueName;
-	
+	int matchCount=0;
+
 	while (!dictionary.eof()) {
 		dictionary >> name;
 		if (name.length() == cowNum.length())
@@ -45,27 +46,31 @@ int main() {
 	
 	dictionary.close();
 
-	for (unsigned int i = 0; i < possibleNames.size(); i++) {
-		name = possibleNames[i];
+	std::ofstream nameOut("namenum.out");
+
+	for (std::string aname : possibleNames) {
 		for (unsigned int j = 0; j < cowNum.length(); j++) {
-			char nameLetter = name[j];
+			char nameLetter = aname[j];
 			char cowNumDigit = cowNum[j];
 			if ((nameLetter != letterReference[cowNumDigit][0]) && (nameLetter != letterReference[cowNumDigit][1]) && (nameLetter != letterReference[cowNumDigit][2])) {
 				trueName = false;
 				break;
 			}
 		}
-		if(trueName)
-			cowNames.push_back(name);
+		if (trueName) {
+			cowNames.push_back(aname);
+			matchCount++;
+			nameOut << aname;
+		}
 	}
 
-	std::ofstream nameOut("namenum.out");
+	nameOut << cowNames.size();
 
-	for (unsigned int i = 0; i < cowNames.size(); i++) {
-		nameOut << cowNames[i];
-	}
+	//for (unsigned int i = 0; i < cowNames.size(); i++) {
+	//	nameOut << cowNames[i];
+	//}
 
-	if (cowNames.size() == 0) {
+	if (matchCount == 0) {
 		nameOut << "NONE";
 	}
 
@@ -73,3 +78,4 @@ int main() {
 	nameOut.close();
 	return 0;
 }
+
