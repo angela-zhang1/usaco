@@ -4,22 +4,21 @@ TASK: namenum
 LANG: C++
 */
 
-#include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
 #include <map>
-#include <array> 
-//so many headers!
+#include <array>
 
-std::ifstream nameIn("namenum.in");
-std::ifstream dictionary("dict.txt");
+
 
 int main() {
-	std::vector<std::string> possibleNames;
+	std::ifstream nameIn("namenum.in");
+	std::ifstream dictionary("namenumdict.txt");
+	std::array<std::string, 4617> possibleNames;
 	std::vector<std::string> cowNames;
 	std::string cowNum;
-	
+
 	std::map<char, std::array<char, 3>> letterReference{
 		{'2', {'A','B','C'}},
 		{'3', {'D','E','F'}},
@@ -34,48 +33,44 @@ int main() {
 	nameIn >> cowNum;
 	nameIn.close();
 
-	bool trueName = true;
 	std::string name;
-	int matchCount=0;
+	int matchCow = 0;
 
-	while (!dictionary.eof()) {
+	for (int i = 0; i < 4617; i++) {
 		dictionary >> name;
-		if (name.length() == cowNum.length())
-			possibleNames.push_back(name);
+		possibleNames[i] = name;
 	}
-	
+
 	dictionary.close();
+
+	std::string cowName;
+	bool trueName = true;
 
 	std::ofstream nameOut("namenum.out");
 
-	for (std::string aname : possibleNames) {
+	for (int i = 0; i < 4617; i++) {
+		cowName = possibleNames[i];
+		if (cowName.length() != cowNum.length()) {
+			break;
+		}
 		for (unsigned int j = 0; j < cowNum.length(); j++) {
-			char nameLetter = aname[j];
+			char nameLetter = cowName[j];
 			char cowNumDigit = cowNum[j];
 			if ((nameLetter != letterReference[cowNumDigit][0]) && (nameLetter != letterReference[cowNumDigit][1]) && (nameLetter != letterReference[cowNumDigit][2])) {
-				trueName = false;
-				break;
+					trueName = false;
+					break;
 			}
 		}
 		if (trueName) {
-			cowNames.push_back(aname);
-			matchCount++;
-			nameOut << aname;
+			matchCow++;
+			nameOut << cowName << "\n";
 		}
 	}
 
-	nameOut << cowNames.size();
-
-	//for (unsigned int i = 0; i < cowNames.size(); i++) {
-	//	nameOut << cowNames[i];
-	//}
-
-	if (matchCount == 0) {
-		nameOut << "NONE";
+	if (matchCow == 0) {
+		nameOut << "NONE" << "\n";
 	}
 
-	nameOut << "\n";
 	nameOut.close();
 	return 0;
 }
-
