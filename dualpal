@@ -1,0 +1,53 @@
+/*
+ID: angela.11
+TASK: dualpal
+LANG: C++
+*/
+
+#include <fstream>
+#include <string>
+
+std::string changeBase(int newBase, int number)
+{
+	char numeral[20] = { '0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G','H','I','J' };
+	std::string newNumber = "";
+	std::string newNumberBackwards = "";
+	while (number >= 1) {
+		int digit = number % newBase;
+		char newDigit = numeral[digit];
+		newNumberBackwards.push_back(newDigit);
+		number = number / newBase;
+	}
+	for (int i = newNumberBackwards.length(); i > 0; i--)
+		newNumber.push_back(newNumberBackwards[i - 1]);
+	return newNumber;
+}
+
+int main() {
+	int loop, start;
+	int count = 0;
+	int palBaseCount = 0;
+	std::string palCheck;
+	std::ifstream dualpalIn("dualpal.in");
+	dualpalIn >> loop >> start;
+	dualpalIn.close();
+	start++;
+	std::ofstream dualpalOut("dualpal.out");
+	while (count < loop) {
+		palBaseCount = 0;
+		for (int i = 2; i <= 10; i++) {
+			std::string changed = changeBase(i, start);
+			for (int j = changed.length(); j > 0; i++) {
+				palCheck += changed[j - 1];
+			}
+			if (changed == palCheck)
+				palBaseCount++;
+			if (palBaseCount > 2) {
+				dualpalOut << start << "\n";
+				break;
+			}
+		}
+		start++;
+	}
+	dualpalOut.close();
+}
