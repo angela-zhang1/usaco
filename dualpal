@@ -7,22 +7,6 @@ LANG: C++
 #include <fstream>
 #include <string>
 
-std::string changeBase(int newBase, int number)
-{
-	char numeral[20] = { '0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G','H','I','J' };
-	std::string newNumber = "";
-	std::string newNumberBackwards = "";
-	while (number >= 1) {
-		int digit = number % newBase;
-		char newDigit = numeral[digit];
-		newNumberBackwards.push_back(newDigit);
-		number = number / newBase;
-	}
-	for (int i = newNumberBackwards.length(); i > 0; i--)
-		newNumber.push_back(newNumberBackwards[i - 1]);
-	return newNumber;
-}
-
 int main() {
 	int loop, start;
 	int count = 0;
@@ -35,20 +19,31 @@ int main() {
 	std::ofstream dualpalOut("dualpal.out");
 	while (count < loop) {
 		palBaseCount = 0;
+
 		for (int i = 2; i <= 10; i++) {
-			std::string changed = changeBase(i, start);
+			std::string changed = "";
+			std::string digit;
+			while (start > 1) {
+				digit = start % i;
+				start /= i;
+				changed = digit + changed;
+			}
 			for (int j = changed.length(); j > 0; i++) {
 				palCheck += changed[j - 1];
 			}
-			if (changed == palCheck)
+			if (changed == palCheck) {
 				palBaseCount++;
-			if (palBaseCount > 2) {
-				dualpalOut << start << "\n";
-				count++;
-				break;
+				if (palBaseCount == 2) break;
 			}
+		}
+
+		if (palBaseCount == 2) {
+			count++;
+			dualpalOut << start << "\n";
+			break;
 		}
 		start++;
 	}
 	dualpalOut.close();
+	return 0;
 }
