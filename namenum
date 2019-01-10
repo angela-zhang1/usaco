@@ -63,12 +63,12 @@ int main() {
 		}
 		if (trueName) {
 			matchCow++;
-			nameOut << cowName << "\n";
+			nameOut << cowName << endl;
 		}
 	}
 
 	if (matchCow == 0) {
-		nameOut << "NONE" << "\n";
+		nameOut << "NONE" << endl;
 	}
 
 	nameOut.close();
