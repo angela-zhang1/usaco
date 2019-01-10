@@ -17,7 +17,7 @@ int main() {
 	std::ifstream dictionary("namenumdict.txt");
 	std::array<std::string, 4617> possibleNames;
 	std::vector<std::string> cowNames;
-	std::string cowNum;
+	std::string serial;
 
 	std::map<char, std::array<char, 3>> letterReference{
 		{'2', {'A','B','C'}},
@@ -30,7 +30,7 @@ int main() {
 		{'9', {'W','X','Y'}},
 	};
 
-	nameIn >> cowNum;
+	nameIn >> serial;
 	nameIn.close();
 
 	std::string name;
@@ -49,13 +49,14 @@ int main() {
 	std::ofstream nameOut("namenum.out");
 
 	for (int i = 0; i < 4617; i++) {
+		trueName = true;
 		cowName = possibleNames[i];
-		if (cowName.length() != cowNum.length()) {
-			break;
+		if (cowName.length() != serial.length()) {
+			continue;
 		}
-		for (unsigned int j = 0; j < cowNum.length(); j++) {
+		for (unsigned int j = 0; j < serial.length(); j++) {
 			char nameLetter = cowName[j];
-			char cowNumDigit = cowNum[j];
+			char cowNumDigit = serial[j];
 			if ((nameLetter != letterReference[cowNumDigit][0]) && (nameLetter != letterReference[cowNumDigit][1]) && (nameLetter != letterReference[cowNumDigit][2])) {
 					trueName = false;
 					break;
@@ -63,12 +64,12 @@ int main() {
 		}
 		if (trueName) {
 			matchCow++;
-			nameOut << cowName << endl;
+			nameOut << cowName << "\n";
 		}
 	}
 
 	if (matchCow == 0) {
-		nameOut << "NONE" << endl;
+		nameOut << "NONE" << "\n";
 	}
 
 	nameOut.close();
