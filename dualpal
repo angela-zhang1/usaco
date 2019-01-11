@@ -17,18 +17,18 @@ int main() {
 	dualpalIn.close();
 	start++;
 	std::ofstream dualpalOut("dualpal.out");
-	while (count < loop) {
+	while (count < loop) { 
 		palBaseCount = 0;
 
 		for (int i = 2; i <= 10; i++) {
 			std::string changed = "";
 			std::string digit;
-			while (start > 1) {
-				digit = start % i;
-				start /= i;
+			while (start > 1) { //what if the digit left IS 1?
+				digit = start % i; 
+				start /= i; //you are overwriting the var "start"; you should use a copy of start instead
 				changed = digit + changed;
 			}
-			for (int j = changed.length(); j > 0; i++) {
+			for (int j = changed.length(); j > 0; i++) {//change i++ to j--
 				palCheck += changed[j - 1];
 			}
 			if (changed == palCheck) {
@@ -39,7 +39,7 @@ int main() {
 		if (palBaseCount >= 2) {
 			count++;
 			dualpalOut << start << "\n";
-			break;
+			break; //why are you breaking out of the OUTER loop?
 		}
 		start++;
 	}
