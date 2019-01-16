@@ -12,34 +12,37 @@ int main() {
 	int count = 0;
 	int palBaseCount = 0;
 	std::string palCheck;
+
 	std::ifstream dualpalIn("dualpal.in");
 	dualpalIn >> loop >> start;
 	dualpalIn.close();
-	start++;
+	
+	start++; //to start from the first integer greater than the one provided
 	std::ofstream dualpalOut("dualpal.out");
+	int baseChange;
+	
 	while (count < loop) {
 		palBaseCount = 0;
-
 		for (int i = 2; i <= 10; i++) {
 			std::string changed = "";
 			std::string digit;
-			while (start > 1) {
-				digit = start % i;
-				start /= i;
-				changed = digit + changed;
+			baseChange = start;
+			while (baseChange >= 1) {
+				digit = baseChange % i;
+				baseChange /= i; 
+				changed = changed + digit;
 			}
-			for (int j = changed.length(); j > 0; i++) {
+			for (int j = changed.length(); j > 0; j--) {
 				palCheck += changed[j - 1];
 			}
 			if (changed == palCheck) {
 				palBaseCount++;
 			}
-		}
-
-		if (palBaseCount >= 2) {
-			count++;
-			dualpalOut << start << "\n";
-			break;
+			if (palBaseCount >= 2) {
+				count++;
+				dualpalOut << start << "\n";
+				break;
+			}
 		}
 		start++;
 	}
