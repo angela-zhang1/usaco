@@ -9,7 +9,11 @@ LANG: C++
 #include <vector>
 
 int main() {
-	
+	int totalMilk;
+	int numFarmers;
+	std::ifstream milkIn("milk.in");
+	milkIn >> totalMilk >> numFarmers;
+	for (i = 0; i < numFarmers; i++) {}
 
 
 
