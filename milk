@@ -1,0 +1,18 @@
+/*
+ID: angela.11
+TASK: milk
+LANG: C++
+*/
+
+#include <fstream>
+#include <array>
+#include <vector>
+
+int main() {
+	
+
+
+
+
+	return 0;
+}
