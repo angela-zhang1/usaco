@@ -23,11 +23,12 @@ int main() {
 	while (count < loop) {
 		palBaseCount = 0;
 		for (int i = 2; i <= 10; i++) {
+			palCheck = "";
 			std::string changed = "";
 			std::string digit;// for me this digit always ends up being \x2. Idk
 			int baseChange = start;
 			while (baseChange != 0) {
-				digit = baseChange % i;
+				digit = std::to_string(baseChange % i);
 				baseChange /= i;
 				changed = changed + digit;
 			}
