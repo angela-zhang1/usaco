@@ -13,7 +13,7 @@ int main() {
 	int numFarmers;
 	std::ifstream milkIn("milk.in");
 	milkIn >> totalMilk >> numFarmers;
-	for (i = 0; i < numFarmers; i++) {}
+	for (int i = 0; i < numFarmers; i++) {}
 
 
 
