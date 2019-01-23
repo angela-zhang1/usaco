@@ -4,19 +4,39 @@ TASK: milk
 LANG: C++
 */
 
-#include <fstream>
 #include <array>
 #include <vector>
+#include <fstream>
 
 int main() {
 	int totalMilk;
+	int currentMilk = 0;
 	int numFarmers;
+	int cost;
+	int x;
+	int y;
+	int minCost=;
+	std::vector<int> milkAmount;
+	std::vector<int> milkCost;
 	std::ifstream milkIn("milk.in");
 	milkIn >> totalMilk >> numFarmers;
-	for (int i = 0; i < numFarmers; i++) {}
 
+	for (int i = 0; i < numFarmers; i++) {
+		milkIn >> x >> y;
+		milkCost.push_back(x);
+		milkAmount.push_back(y);
+	}
 
+	while (currentMilk <= totalMilk) {
+		for (int i = 0; i < numFarmers; i++) {
+			if (milkCost )
+		}
+	
+	}
+	
 
-
+	std::ofstream milkOut("milk.out");
+	milkOut << cost << "\n";
+	milkOut.close();
 	return 0;
 }
