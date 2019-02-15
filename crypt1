@@ -11,6 +11,11 @@ int main() {
 	int solCount = 0;
 	int numdigits;
 	int digit;
+	int a;
+	int b;
+	int c;
+	int d;
+	int e;
 	std::vector<int> digits;
 
 	std::ifstream cryptIn ("crypt1.in");
@@ -23,11 +28,17 @@ int main() {
 	cryptIn.close();
 	
 	for (int i = 0; i < numdigits; i++) {
+		a = digits[i];
 		for (int j = 0; j < numdigits; j++) {
+			b = digits[j];
 			for (int k = 0; k < numdigits; k++) {
+				c = digits[k];
 				for (int l = 0; l < numdigits; l++) {
+					d = digits[l];
 					for (int m = 0; m < numdigits; m++) {
-						
+						e = digits[m];
+						if () {}
+						else if () {}
 					}
 				}
 			}
