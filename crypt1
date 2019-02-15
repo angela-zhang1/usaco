@@ -3,3 +3,39 @@ ID: angela.11
 TASK: crypt1
 LANG: C++
 */
+
+#include <fstream>
+#include <vector>
+
+int main() {
+	int solCount = 0;
+	int numdigits;
+	int digit;
+	std::vector<int> digits;
+
+	std::ifstream cryptIn ("crypt1.in");
+	cryptIn >> numdigits;
+	
+	for (int i = 0; i < numdigits; i++) {
+		cryptIn >> digit;
+		digits.push_back(digit);
+	}
+	cryptIn.close();
+	
+	for (int i = 0; i < numdigits; i++) {
+		for (int j = 0; j < numdigits; j++) {
+			for (int k = 0; k < numdigits; k++) {
+				for (int l = 0; l < numdigits; l++) {
+					for (int m = 0; m < numdigits; m++) {
+						
+					}
+				}
+			}
+		}
+	}
+
+	std::ofstream cryptOut ("crypt1.out");
+	cryptOut << solCount << "\n";
+	cryptOut.close();
+	return 0;
+}
