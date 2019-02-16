@@ -31,6 +31,8 @@ int main() {
 		else if (occupiedStall - 1 > endOccupied)
 			endOccupied = occupiedStall - 1;
 	}
+	numCovered = endOccupied - beginOccupied + 1;
+
 
 	for (int i = beginOccupied; i < endOccupied; i++) {
 		coveredStalls[i] = 1;
@@ -38,18 +40,35 @@ int main() {
 	currentBoards = 1;
 	int currentNoCow = 0;
 	int maxNoCow = 0;
-	int index;
+	int index = 0;
 
-	while (currentBoards < maxBoards) {
+	while (currentBoards < maxBoards && numCovered > occupied) {
 		for (int i = beginOccupied; i < endOccupied; i++) {
-			if (stalls[i] == 0)
-				currentNoCow++;
-			else
-				if (currentNoCow > maxNoCow)
-					maxNoCow = currentNoCow;
-					
-				currentNoCow = 0;
+			if (coveredStalls[i] == 0) {
+				continue;
+			}
+			else {
+				if (stalls[i] == 0)
+					currentNoCow++;
+				else {
+					if (currentNoCow > maxNoCow) {
+						maxNoCow = currentNoCow;
+						index = i - 1;
+					}
+					currentNoCow = 0;
+				}
+				
+			}
 		}
+		for (int i = 0; i < maxNoCow; i++) {
+			coveredStalls[index - i] = 0;
+		}
+
+		numCovered -= maxNoCow;
+		currentBoards++;
+		currentNoCow = 0;
+		maxNoCow = 0;
+		index = 0;
 	}
 
 	std::ofstream barnOut("barn1.out");
