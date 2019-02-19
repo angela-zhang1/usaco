@@ -57,7 +57,6 @@ int main() {
 						 ***  y
 						------
 						 ****
-						
 						*/
 						if (x > 999 || y > 999) { goto FAIL; }
 						else if (product> 9999) { goto FAIL; }
