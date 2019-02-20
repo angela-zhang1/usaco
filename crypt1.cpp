@@ -30,7 +30,7 @@ int main() {
 	for (int i = 0; i < numdigits; i++) {
 		cryptIn >> digit;
 		digits.push_back(digit);
-		goodDigit[i] == true;
+		goodDigit[digit] = true;
 	}
 	cryptIn.close();
 
@@ -58,20 +58,26 @@ int main() {
 						------
 						 ****
 						*/
-						if (x > 999 || y > 999) { goto FAIL; }
-						else if (product> 9999) { goto FAIL; }
-						else {
-							for (int n = 0; n < 3; i++) {
+						if ((x > 999) || (y > 999)) {
+							goto FAIL; 
+						}
+						if (product > 9999) {
+							goto FAIL; 
+						}
+						{
+							for (int n = 0; n < 3; n++) {
 								if (goodDigit[x % 10] == false) {
 									goto FAIL;
 								}
 								x /= 10;
 							}
-							for (int n = 0; n < 3; i++) {
-								if (goodDigit[y % 10] == false) { goto FAIL; }
+							for (int n = 0; n < 3; n++) {
+								if (goodDigit[y % 10] == false) { 
+									goto FAIL; 
+								}
 								y /= 10;
 							}
-							for (int n = 0; n < 4; i++) {
+							for (int n = 0; n < 4; n++) {
 								if (goodDigit[product % 10] == false) {
 									goto FAIL;
 								}
