@@ -11,6 +11,7 @@ int main() {
 	int dialNumbers;
 	int farmer[3]; int master[3];
 	int x = 0; int y = 0; int z = 0;
+	int a = 0; int b = 0; int c = 0;
 	int firstDifference, int secondDifference; int thirdDifference;
 	int solutions = 250;
 	std::ifstream comboIn("combo.in");
@@ -40,10 +41,10 @@ int main() {
 	}
 
 	if (farmer[1] > master[1]) {
-		back1 = dialNumbers - farmer[1] + master[1];
+		back2 = dialNumbers - farmer[1] + master[1];
 	}
 	else if (master[1] > farmer[1]) {
-		back1 = dialNumbers - master[1] + farmer[1];
+		back2 = dialNumbers - master[1] + farmer[1];
 	}
 
 	if (std::abs(farmer[2] - master[2]) <= 4) {
@@ -51,17 +52,29 @@ int main() {
 	}
 
 	if (farmer[2] > master[2]) {
-		back1 = dialNumbers - farmer[2] + master[2];
+		back3 = dialNumbers - farmer[2] + master[2];
 	}
 	else if (master[2] > farmer[2]) {
-		back1 = dialNumbers - master[2] + farmer[2];
+		back3 = dialNumbers - master[2] + farmer[2];
+	}
+	
+	if (back1 <= 4) {
+		a = 5-back1;
+	}
+	if (back2 <= 4) {
+		b = 5 - back2;
+	}
+	if (back3 <= 4) {
+		c = 5-back3;
 	}
 
-	solutions -= x * y*z;
+	solutions -= x * y * z;
+	solutions -= a * b * c;
 
 	if (solutions>std::pow(dialNumbers, 3)) {
 		solutions = std::pow(dialNumbers, 3);
 	}
+	
 
 	std::ofstream comboOut("combo.out");
 	comboOut << solutions << "\n";
