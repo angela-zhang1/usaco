@@ -22,6 +22,7 @@ int main() {
 	firstDifference = std::abs(farmer[0] - master[0]);
 	secondDifference = std::abs(farmer[1] - master[1]);
 	thirdDifference = std::abs(farmer[2] - master[2]);
+	int back1; int back2; int back3;
 
 	if (firstDifference <= 4) {
 		x = 5 - firstDifference;
