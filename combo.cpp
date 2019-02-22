@@ -57,24 +57,24 @@ int main() {
 	else if (master[2] > farmer[2]) {
 		back3 = dialNumbers - master[2] + farmer[2];
 	}
-	
+
 	if (back1 <= 4) {
-		a = 5-back1;
+		a = 5 - back1;
 	}
 	if (back2 <= 4) {
 		b = 5 - back2;
 	}
 	if (back3 <= 4) {
-		c = 5-back3;
+		c = 5 - back3;
 	}
 
 	solutions -= x * y * z;
 	solutions -= a * b * c;
 
-	if (solutions>std::pow(dialNumbers, 3)) {
+	if(dialNumbers<=5) {
 		solutions = std::pow(dialNumbers, 3);
 	}
-	
+
 
 	std::ofstream comboOut("combo.out");
 	comboOut << solutions << "\n";
