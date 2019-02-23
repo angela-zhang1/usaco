@@ -9,7 +9,7 @@ LANG: C++
 
 #define START_YEAR 1900
 
-//This problem is a mess and I will have to revise it soon.
+//This problem is a mess and I will have to revise it soon. I actually just recently found it in my old files.
 
 using namespace std;
 
