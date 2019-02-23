@@ -12,7 +12,7 @@ int main() {
 	int farmer[3]; int master[3];
 	int x = 0; int y = 0; int z = 0;
 	int a = 0; int b = 0; int c = 0;
-	int firstDifference, int secondDifference; int thirdDifference;
+	int firstDifference; int secondDifference; int thirdDifference;
 	int solutions = 250;
 	std::ifstream comboIn("combo.in");
 	comboIn >> dialNumbers;
@@ -23,7 +23,7 @@ int main() {
 	firstDifference = std::abs(farmer[0] - master[0]);
 	secondDifference = std::abs(farmer[1] - master[1]);
 	thirdDifference = std::abs(farmer[2] - master[2]);
-	int back1; int back2; int back3;
+	int back1 = 0; int back2 = 0; int back3 = 0;
 
 	if (firstDifference <= 4) {
 		x = 5 - firstDifference;
@@ -58,21 +58,20 @@ int main() {
 		back3 = dialNumbers - master[2] + farmer[2];
 	}
 
-	if (back1 <= 4) {
+	if (back1 <= 4 && back1 > 0) {
 		a = 5 - back1;
 	}
-	if (back2 <= 4) {
+	if (back2 <= 4 && back2 > 0) {
 		b = 5 - back2;
 	}
-	if (back3 <= 4) {
+	if (back3 <= 4 && back3 > 0) {
 		c = 5 - back3;
 	}
 
-	solutions -= x * y * z;
-	solutions -= a * b * c;
+	solutions -= (x+a) * (y+b) * (z+c);
 
 	if(dialNumbers<=5) {
-		solutions = std::pow(dialNumbers, 3);
+		solutions = (int) std::pow(dialNumbers, 3);
 	}
 
 
